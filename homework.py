@@ -2,8 +2,8 @@ import math
 import time
 import random
 
-NUMBER_OF_ELEMENTS_IN_TEST_LIST = 100000
-NUMBER_OF_TESTS = 1000
+NUMBER_OF_ELEMENTS_IN_TEST_LIST = 10000
+NUMBER_OF_TESTS = 10
 RAND_MAX = 100000
 
 def generate_list(number_of_elements):
