@@ -42,6 +42,41 @@ def insertion_sort(list_):
             list_[j + 1] = list_[j]
             j = j - 1
         list_[j + 1] = k
+    return list_
+
+def merge(list1, list2):
+    index1 = 0
+    index2 = 0
+    list3 = []
+    while (index1 < len(list1)) and (index2 < len(list2)):
+        if list1[index1] < list2[index2]:
+            list3.append(list1[index1])
+            index1 += 1
+        else:
+            list3.append(list2[index2])
+            index2 += 1
+    while (index1 < len(list1)):
+        list3.append(list1[index1])
+        index1 += 1
+    while (index2 < len(list2)):
+        list3.append(list2[index2])
+        index2 += 1
+    return list3
+
+def merge_sort(list_):
+    if len(list_) > 2:
+        middle = len(list_) // 2
+        list_[: middle] = merge_sort(list_[: middle])
+        list_[middle :] = merge_sort(list_[middle :])
+        list_ = merge(list_[: middle], list_[middle :])
+    elif len(list_) == 0:
+        return None
+    elif len(list_) == 1:
+        return list_
+    elif len(list_) == 2:
+        if list_[0] > list_[1]:
+            list_ = list_[::-1]
+    return list_
 
 def sort_check(list_):
     for index in range(len(list_) - 1):
@@ -126,3 +161,4 @@ search_test(binary_search)
 test(BubbleSort)
 test(selection_sort)
 test(insertion_sort)
+test(merge_sort)
