@@ -78,6 +78,16 @@ def merge_sort(list_):
             list_ = list_[::-1]
     return list_
 
+def quick_sort(list_):
+    if len(list_) <= 1:
+        return(list_)
+    else:
+        elem = list_[0]
+        left = [i for i in list_ if i < elem]
+        center = [i for i in list_ if i == elem]
+        right = [i for i in list_ if i > elem]
+        return(quick_sort(left) + center + quick_sort(right))
+
 def sort_check(list_):
     for index in range(len(list_) - 1):
         if list_[index] > list_[index + 1]:
@@ -162,3 +172,4 @@ test(BubbleSort)
 test(selection_sort)
 test(insertion_sort)
 test(merge_sort)
+test(quick_sort)
