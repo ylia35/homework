@@ -88,6 +88,27 @@ def quick_sort(list_):
         right = [i for i in list_ if i > elem]
         return(quick_sort(left) + center + quick_sort(right))
 
+def quick_sort1(list_):
+    if len(list_) <= 1:
+        return list_
+    elif len(list_) == 2:
+        if list_[0] > list_[1]:
+            list_ = list_[::-1]
+        return list_
+    else:
+        left = []
+        right = []
+        center = []
+        elem = list_[0]
+        for i in list_:
+            if i < elem:
+                left.append(i)
+            elif i == elem:
+                center.append(i)
+            elif i > elem:
+                right.append(i)
+        return quick_sort(left) + center + quick_sort(right)
+
 def sort_check(list_):
     for index in range(len(list_) - 1):
         if list_[index] > list_[index + 1]:
@@ -173,3 +194,4 @@ test(selection_sort)
 test(insertion_sort)
 test(merge_sort)
 test(quick_sort)
+test(quick_sort1)
