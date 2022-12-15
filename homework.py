@@ -44,6 +44,21 @@ def insertion_sort(list_):
         list_[j + 1] = k
     return list_
 
+def binary_sort(list_):
+    for i in range(len(list_)):
+        key = list_[i]
+        start, end = 0, i - 1
+        while start < end:
+            mid = start + (end - start) // 2
+            if key < list_[mid]:
+                end = mid
+            else:
+                start = mid + 1
+        for j in range(i, start + 1,-1):
+            list_[j] = list_[j - 1]
+        list_[start] = key
+    return list_
+
 def merge(list1, list2):
     index1 = 0
     index2 = 0
@@ -195,3 +210,4 @@ test(insertion_sort)
 test(merge_sort)
 test(quick_sort)
 test(quick_sort1)
+test(binary_sort)
