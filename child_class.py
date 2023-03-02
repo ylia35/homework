@@ -1,10 +1,12 @@
-from baseClass_ht import post
+from baseClass_ht import post, counter
+
 class spisok(post):
+    @counter
     def __init__(self, nikname, date, text):
         super().__init__(nikname, date, text)
         self.list_ = ['твар', 'мраз', 'гнид']
         self.comments = []
-
+    @counter
     def add_comment(self, comment_text):
         k = 0
         for j in range(len(self.list_)):
@@ -15,5 +17,7 @@ class spisok(post):
         if k == len(self.list_):
             self.comments.append(comment_text)
 
+    #здесь был get_all_comments
+    @counter
     def __str__(self):
         return super().__str__()
