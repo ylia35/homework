@@ -12,3 +12,4 @@ pos.add_likes(likes)
 
 pos.get_all_comments()
 print(pos)
+
