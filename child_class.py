@@ -1,4 +1,4 @@
-from baseClass_ht import post, counter
+from mother_class import post, counter
 
 class spisok(post):
     @counter
@@ -17,7 +17,7 @@ class spisok(post):
         if k == len(self.list_):
             self.comments.append(comment_text)
 
-    #здесь был get_all_comments
     @counter
     def __str__(self):
         return super().__str__()
+
