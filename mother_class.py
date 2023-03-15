@@ -1,3 +1,4 @@
+from copy import copy
 def counter(func):
     def wrapper(*args, **kwargs):
         wrapper.count += 1
@@ -35,3 +36,8 @@ class post:
     @counter
     def __str__(self):
         return f'Nickname: {self.nikname}, date: {self.date}, text: {self.text} likes: {self.likes}, comments: {(self.comments[:3])}'
+def __copy__(self):
+    new_obj = post(self.nikname, self.date, self.text)
+    return  new_obj
+pos = post('РИА Новости', '01.12.20022', 'Среди сотрудников ЗАЭС обнаружили наводчиков ВСУ')
+new_obj = copy(pos)
