@@ -1,0 +1,89 @@
+import sqlite3
+from sqlite3 import Error
+from worker import Employer
+
+def create_connection(path):
+    connection = None
+    try:
+        connection = sqlite3.connect(path)
+        print("Connection to SQLite DB successfull")
+    except Error as e:
+        print(f"The error '{e}' occured")
+    return connection
+
+
+def execute_query(connection, query):
+    cursor = connection.cursor()
+    try:
+        cursor.execute(query)
+        connection.commit()
+        print("Query executed successfully")
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+def execute_read_query(connection, query):
+    cursor = connection.cursor()
+    result = None
+    try:
+        cursor.execute(query)
+        result = cursor.fetchall()
+        return result
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+def main():
+    connection = create_connection("C:\\Programs\MIIT2022\sm_app.sqlite")
+
+    def create():
+        con = sqlite3.connect("main.db")
+        cur = con.cursor()
+        cur.execute("""CREATE TABLE IF NOT EXISTS company (
+                       name_of_company TEXT NOT NULL,
+                       info TEXT NOT NULL
+                    );""")
+        con.commit()
+        print("Table was created")
+
+    #create()
+
+    def insertd():
+        con = sqlite3.connect("main.db")
+        cur = con.cursor()
+        list_of_jobs = ['RZD', 'Ancor', 'Gasprom', 'Rusal', 'Roskosmos', 'CPPK', 'Dataline']
+        info = ['Railways', 'HR-company', 'Transnational energy company',  'Russian aluminum company',\
+                'State corporation for space activities', 'Suburban passenger company',\
+                'Russian data center operator and cloud service provider']
+        for i in range(len(info)):
+            cur.execute(f" INSERT INTO company (name_of_company, info) VALUES (?, ?);", (list_of_jobs[i], info[i]))
+            con.commit()
+        print('Data was added successfully')
+
+    #insertd()
+
+    def create1():
+        con = sqlite3.connect("main.db")
+        cur = con.cursor()
+        cur.execute("""CREATE TABLE IF NOT EXISTS job_registry (
+                       name_of_worker TEXT NOT NULL,
+                       company TEXT NOT NULL,
+                       date_of_start DATATIME,
+                       date_of_end DATATIME,
+                       specialization TEXT,
+                       salary INTEGER
+                    );""")
+        con.commit()
+        print("Table was created")
+
+    #create1()
+
+    select_company = "SELECT * from company"
+    company = execute_read_query(connection, select_company)
+
+    print("\nТаблица пользователей:\n")
+    for company in company:
+        print(company)
+
+if __name__ == "__main__":
+    main()
